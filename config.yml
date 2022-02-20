@@ -1,0 +1,16 @@
+# Config file for SocialMediaScraper python project by Jon Bonney
+
+# data_path = path of data file relative to main.py
+# currently only .xlsx files are supported
+# will support .csv in future
+data_path: socials.xlsx
+# url_col = <string> name of the column which stores website URLs
+# currently a column must be provided. in future, if no column is provided,
+# it will be assumed that the first column of .xslx files or first row of .csv should be used
+url_col: Web URL
+# header = True if data file contains header (column names)
+header: True
+# user_agent = the User Agent that you would like to access webpages via
+user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15
+# timeout = number of seconds to allow request to take before timing out
+timeout: 10
