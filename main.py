@@ -120,18 +120,20 @@ async def fetch_socials(session, url_id, url, timeout, headers):
     if not page:
         return  # if there was an error preventing the HTML code from being retrieved, skip to next URL
     print(colored(('Received HTML from number ' + str(url_id) + ': '), color='green'), url)
-    # Run parse_socials() to get all social account links found in the HTML code
+    # Run parse_social_links() to get all social account links found in the HTML code
     social_links = parse_social_links(url_id, url, page)
-
+    # Run parse_social_handle() on each link to parse out the handle from the url
     social_handles = []
     for link in social_links:
         handle = parse_social_handle(link)
         if handle:
             social_handles.append(handle)
+    # Run compare_filter() to filter out irrelevant extra handles from social_handles
+    handle_dict = compare_filter(social_handles)
     # Log socials to socials_log
-    if social_handles:
-        print(social_handles)
-        log_socials(url, social_handles)
+    if handle_dict:
+        print(handle_dict)
+        log_socials(url, handle_dict)
 
 
 def parse_social_links(url_id, url, page):
@@ -176,11 +178,74 @@ def parse_social_handle(url):
     raise Exception('Social account handle could not be parsed from URL: ' + url)
 
 
-def log_socials(url, socials):
+def count_mentions(list, ignore_case=False):
+    if ignore_case:
+        for i in range(len(list)):
+            list[i] = list[i].lower()
+    mentions = {i: list.count(i) for i in list}
+    return mentions
+
+
+def compare_filter(handles):
+    platforms_only = []
+    handles_only = []
+    for i in handles:
+        platforms_only.append(i[0])
+        handles_only.append(i[1])
+    platform_mentions = count_mentions(platforms_only, ignore_case=True)
+    handle_mentions = count_mentions(handles_only, ignore_case=True)
+    print(platform_mentions)
+    print(handle_mentions)
+    handle_dict = {}
+    for p in platform_mentions.keys():
+        # See if any platforms have multiple handles assigned to them
+        if platform_mentions[p] > 1:
+            print(p, 'mentioned', platform_mentions[p], 'times')
+            # Create a list of handles that were assigned to the same platform
+            repeats = []
+            for i in handles:
+                if i[0] == p:
+                    repeats.append(i[1])
+            print('handles assigned to', p, ':', repeats)
+            # First check if the repeats differ only in capitalization
+            for i in repeats:
+                # for every i, compare to every other value x
+                for x in [x for x in repeats if x != i]:
+                    if i == x.lower():
+                        repeats.remove(x)
+                        print('removed', x)
+            # After removing elements which differ only by capitilization,
+            # if there are no repeats, stop and move on
+            if len(repeats) > 1:
+                # See if one of the repeats has been mentioned elsewhere
+                # If so, set it as most_mentioned
+                most_mentioned = None
+                for i in repeats:
+                    if handle_mentions[i.lower()] > 1:
+                        most_mentioned = i
+                        break
+                # If an element has been set as most_mentioned, see if any other elements were mentioned even more times
+                if most_mentioned:
+                    for i in repeats:
+                        if handle_mentions[i.lower()] > handle_mentions[most_mentioned.lower()]:
+                            most_mentioned = i
+                    print('based on comparison,', most_mentioned, 'appears to be the relevant handle.')
+                    handle_dict[p] = most_mentioned
+                else:
+                    print('neither handles are mentioned elsewhere')
+                    handle_dict[p] = repeats
+        else:
+            for i in handles:
+                if i[0] == p:
+                    handle_dict[p] = i[1]
+    return handle_dict
+
+
+def log_socials(url, handle_dict):
     # Log socials to socials_log.csv
     with open("socials_log.csv", "a+") as file:
-        for social in socials:
-            file.write('\n' + url + ', ' + social[0] + '=' + social[1])
+        for key in handle_dict:
+            file.write('\n' + url + ', ' + key + ': ' + str(handle_dict[key]))
     file.close()
 
 

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="created parse_social_handle() function&#10;- parse_social_handle() takes a social account url and returns a handle&#10;- reworked is_social_account() function after realizing it was too permissive&#10;- rearranged the order of a few functions">
+    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="improved is_social_account and parse_social_handle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -93,9 +93,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -143,8 +147,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test2" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.test2" />
       <item itemvalue="Python.test" />
     </list>
   </component>
@@ -185,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645491855822</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="improved is_social_account and parse_social_handle">
+      <created>1645506310167</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1645506310167</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -220,7 +253,8 @@
     <MESSAGE value="fixed timeout bug" />
     <MESSAGE value="code cleanup" />
     <MESSAGE value="created parse_social_handle() function&#10;- parse_social_handle() takes a social account url and returns a handle&#10;- reworked is_social_account() function after realizing it was too permissive&#10;- rearranged the order of a few functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="created parse_social_handle() function&#10;- parse_social_handle() takes a social account url and returns a handle&#10;- reworked is_social_account() function after realizing it was too permissive&#10;- rearranged the order of a few functions" />
+    <MESSAGE value="improved is_social_account and parse_social_handle" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved is_social_account and parse_social_handle" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />
