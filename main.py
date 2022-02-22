@@ -36,11 +36,11 @@ def read_urls():
     data_path = config['data_path']
     url_col = config['url_col']
     # Read Web URL column of data set as list
-    raw_urls = pandas.read_excel(data_path)[url_col].to_list()
+    raw_urls = pandas.read_excel(data_path)[url_col].head(3000).to_list()
     # Remove all NaN (Not a Number) from list which arose from missing values in data set
     urls = [i for i in raw_urls if not pandas.isna(i)]
     print('Removed', len(raw_urls) - len(urls), 'empty URL elements from list.', sep=' ')
-    # urls = ['homedepot.com', '3m.com', 'www.7-eleven.com', 'www.aflac.com', 'https://www.battlenorthgold.com']
+    # urls = ['homedepot.com', '3m.com', 'www.7-eleven.com', 'www.juniperpharma.com', 'https://www.battlenorthgold.com']
     print(urls)
     # Clean up beginning of URL to ensure that they all use secure https schema
     for i in range(len(urls)):
@@ -65,7 +65,7 @@ async def get_page(session, id, url, timeout, headers):
     # Request HTML code from URL
     try:
         print(colored(('Staging request number ' + str(id) + ': '), color='yellow'), url)
-        async with session.get(url, headers=headers) as response:
+        async with session.get(url, headers=headers, timeout=timeout) as response:
 
             print('status of ' + str(id) + ': ' + str(response.status))
             page = await response.text()
@@ -79,8 +79,8 @@ async def get_page(session, id, url, timeout, headers):
         review_url(id, url, 'InvalidURL', e)
         return
     except aiohttp.ClientConnectionError as e:
-        print(colored(('Exception in ' + str(id) + ': ConnectionError'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'ConnectionError', e)
+        print(colored(('Exception in ' + str(id) + ': ClientConnectionError'), 'red'), ' | Adding URL to review_urls: ', url)
+        review_url(id, url, 'ClientConnectionError', e)
         return
     except aiohttp.TooManyRedirects as e:
         print(colored(('Exception in ' + str(id) + ': TooManyRedirects'), 'red'), ' | Adding URL to review_urls: ', url)
@@ -168,13 +168,14 @@ async def main():
 
     # limit connection pool to 50 (100 by default) to lessen resource needs
     # enable_cleanup_closed=True to fix any ssl leaking caused by poor server behavior
-    conn = aiohttp.TCPConnector(limit=50, enable_cleanup_closed=True)
+    conn = aiohttp.TCPConnector(limit=100, enable_cleanup_closed=True, force_close=True)
 
     # session versus request-specific timeouts are incredibly confusing in aiohttp
     # by default, request-specific timeouts count the time waiting for connection pool to open up
     # this ClientTimeout object should resolve this by specifying None for total timeout
     timeout_seconds = 10
-    timeout = aiohttp.ClientTimeout(total=None, sock_connect=timeout_seconds, sock_read=timeout_seconds)
+    timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=timeout_seconds, sock_read=timeout_seconds)
+
     async with aiohttp.ClientSession(headers=headers, connector=conn) as session:
         # Iterate through list of URLs, scraping the HTML code for each and parsing out social media links
         for i in range(len(urls)):
