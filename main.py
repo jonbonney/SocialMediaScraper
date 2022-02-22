@@ -1,4 +1,3 @@
-import requests
 import pandas
 import re
 import yaml
@@ -16,7 +15,7 @@ def is_social_account(url):
                  'linkedin.com/company/',
                  'tiktok.com/',
                  'pinterest.com/']
-    # Check if URL could be an account of any of the major social media platforms
+    # Check if URL could be an account of a major social media platforms
     for i in platforms:
         if re.search(i, url, re.IGNORECASE):
             return True
@@ -53,58 +52,63 @@ def read_urls():
     return urls
 
 
-def review_url(id, url, error='ErrorUnknown', traceback='No traceback'):
+def review_url(url_id, url, error='ErrorUnknown', traceback='No traceback'):
     # Read config file and instantiate variables
     with open("review_urls.csv", "a+") as file:
-        file.write('\n' + str(id) + ', ' + url + ', ' + error)
+        file.write('\n' + str(url_id) + ', ' + url + ', ' + error)
         print('traceback: ', traceback)
     file.close()
 
 
-async def get_page(session, id, url, timeout, headers):
+async def get_page(session, url_id, url, timeout, headers):
     # Request HTML code from URL
     try:
-        print(colored(('Staging request number ' + str(id) + ': '), color='yellow'), url)
+        print(colored(('Staging request number ' + str(url_id) + ': '), color='yellow'), url)
         async with session.get(url, headers=headers, timeout=timeout) as response:
 
-            print('status of ' + str(id) + ': ' + str(response.status))
+            print('status of ' + str(url_id) + ': ' + str(response.status))
             page = await response.text()
     # Handle errors
     except asyncio.exceptions.TimeoutError as e:
-        print(colored(('Exception in ' + str(id) + ': asyncio.Timeout'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'asyncio.Timeout', e)
+        print(colored(('Exception in ' + str(url_id) + ': asyncio.Timeout'), 'red'),
+              ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, 'asyncio.Timeout', str(e))
         return
     except aiohttp.InvalidURL as e:
-        print(colored(('Exception in ' + str(id) + ': InvalidURL'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'InvalidURL', e)
+        print(colored(('Exception in ' + str(url_id) + ': InvalidURL'), 'red'),
+              ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, 'InvalidURL', str(e))
         return
     except aiohttp.ClientConnectionError as e:
-        print(colored(('Exception in ' + str(id) + ': ClientConnectionError'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'ClientConnectionError', e)
+        print(colored(('Exception in ' + str(url_id) + ': ClientConnectionError'), 'red'),
+              ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, 'ClientConnectionError', str(e))
         return
     except aiohttp.TooManyRedirects as e:
-        print(colored(('Exception in ' + str(id) + ': TooManyRedirects'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'TooManyRedirects', e)
+        print(colored(('Exception in ' + str(url_id) + ': TooManyRedirects'), 'red'),
+              ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, 'TooManyRedirects', str(e))
         return
     except aiohttp.ClientPayloadError as e:
-        print(colored(('Exception in ' + str(id) + ': ClientPayloadError'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'ClientPayloadError', e)
+        print(colored(('Exception in ' + str(url_id) + ': ClientPayloadError'), 'red'),
+              ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, 'ClientPayloadError', str(e))
         return
     except aiohttp.ClientError as e:
-        print(colored(('Exception in ' + str(id) + ': ClientError'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, 'ClientError', e)
+        print(colored(('Exception in ' + str(url_id) + ': ClientError'), 'red'), ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, 'ClientError', str(e))
         return
     except BaseException as e:
         # Most common exception will be due to a timeout
         # Other errors are possible, ie: URL is invalid or there is no trusted certificate
-        print(colored(('Exception in ' + str(id) + ': ErrorUnknown'), 'red'), ' | Adding URL to review_urls: ', url)
-        review_url(id, url, traceback=e)
+        print(colored(('Exception in ' + str(url_id) + ': ErrorUnknown'), 'red'), ' | Adding URL to review_urls: ', url)
+        review_url(url_id, url, traceback=str(e))
         return
     # If no errors, return page
     return page
 
 
-def parse_socials(id, url, page):
+def parse_socials(url_id, url, page):
     # Use a Regular Expression pattern to search for all href links
     pattern = re.compile(r'href=(\"[^\"]*|\'[\']*)')
     matches = pattern.findall(page)
@@ -118,7 +122,7 @@ def parse_socials(id, url, page):
 
     # If no socials found, add to review_urls.csv
     if not socials:
-        review_url(id, url, error='NoSocialsFound', traceback='No social account links found.')
+        review_url(url_id, url, error='NoSocialsFound', traceback='No social account links found.')
     print(socials)
     return socials
 
@@ -140,14 +144,14 @@ def read_config():
     return config
 
 
-async def fetch(session, id, url, timeout, headers):
+async def fetch(session, url_id, url, timeout, headers):
     # Run get_page() to get the HTML page for the specified URL
-    page = await get_page(session, id, url, timeout=timeout, headers=headers)
+    page = await get_page(session, url_id, url, timeout=timeout, headers=headers)
     if not page:
         return  # if there was an error preventing the HTML code from being retrieved, skip to next URL
-    print(colored(('Received HTML from number ' + str(id) + ': '), color='green'), url)
+    print(colored(('Received HTML from number ' + str(url_id) + ': '), color='green'), url)
     # Run parse_socials() to get all social account links found in the HTML code
-    socials = parse_socials(id, url, page)
+    socials = parse_socials(url_id, url, page)
 
     # Log socials to socials_log
     if socials:
@@ -158,22 +162,24 @@ async def main():
     # Run read_urls() function to get list of URLs
     urls = read_urls()
 
-    # Get user_agent and timeout from config file
+    # Get config file properties
     config = read_config()
     user_agent = config['user_agent']
     print('user_agent: ', user_agent)
     timeout = config['timeout']
+    conn_limit = config['conn_limit']
+
     headers = {'user-agent': user_agent}
     tasks = []
 
     # limit connection pool to 50 (100 by default) to lessen resource needs
     # enable_cleanup_closed=True to fix any ssl leaking caused by poor server behavior
-    conn = aiohttp.TCPConnector(limit=100, enable_cleanup_closed=True, force_close=True)
+    conn = aiohttp.TCPConnector(limit=conn_limit, enable_cleanup_closed=True, force_close=True)
 
     # session versus request-specific timeouts are incredibly confusing in aiohttp
     # by default, request-specific timeouts count the time waiting for connection pool to open up
     # this ClientTimeout object should resolve this by specifying None for total timeout
-    timeout_seconds = 10
+    timeout_seconds = timeout
     timeout = aiohttp.ClientTimeout(total=None, connect=None, sock_connect=timeout_seconds, sock_read=timeout_seconds)
 
     async with aiohttp.ClientSession(headers=headers, connector=conn) as session:
@@ -187,12 +193,3 @@ async def main():
 
 if __name__ == '__main__':
     asyncio.run(main())
-
-
-
-
-
-
-
-
-

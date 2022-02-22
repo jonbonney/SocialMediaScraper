@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="fixed catastrophic async timeout error">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +31,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Jon &lt;14949860+jonbonney@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -166,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645413628941</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed timeout bug">
+      <created>1645491181945</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1645491181945</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -198,7 +210,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed catastrophic async timeout error" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed catastrophic async timeout error" />
+    <MESSAGE value="fixed timeout bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed timeout bug" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />
