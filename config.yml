@@ -1,9 +1,9 @@
 # Config file for SocialMediaScraper python project by Jon Bonney
 
-# data_path = path of data file relative to main.py
+# data_path = path of data file relative to webpage.py
 # currently only .xlsx files are supported
 # will support .csv in future
-data_path: socials.xlsx
+data_path: socials2.xlsx
 # url_col = <string> name of the column which stores website URLs
 # currently a column must be provided. in future, if no column is provided,
 # it will be assumed that the first column of .xslx files or first row of .csv should be used

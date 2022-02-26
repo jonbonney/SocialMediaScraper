@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="improved is_social_account and parse_social_handle">
+    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tiktok.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webpage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,28 +106,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python">
-      <module name="SocialMediaScraper" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.tiktok">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,8 +149,51 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tiktok" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tiktok.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="webpage" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/webpage.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Python.main" />
+      <item itemvalue="Python.webpage" />
+      <item itemvalue="Python.tiktok" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.test" />
     </list>
@@ -218,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645506310167</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="created count_mentions() and compare_filter()&#10;- count_mentions() takes a list and returns a dictionary of the number of times each unique element occurred. also takes bool ignore_case.&#10;- compare_filter() takes a list of tuples [platform,handle], and returns a dictionary with irrelevant handles filtered out. it uses comparison to the other handles to narrow each platform down to one handle. if it cannot narrow it down, the platform will be assigned a tuple of the possible handles.">
+      <created>1645567647370</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1645567647370</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -254,7 +285,8 @@
     <MESSAGE value="code cleanup" />
     <MESSAGE value="created parse_social_handle() function&#10;- parse_social_handle() takes a social account url and returns a handle&#10;- reworked is_social_account() function after realizing it was too permissive&#10;- rearranged the order of a few functions" />
     <MESSAGE value="improved is_social_account and parse_social_handle" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved is_social_account and parse_social_handle" />
+    <MESSAGE value="created count_mentions() and compare_filter()&#10;- count_mentions() takes a list and returns a dictionary of the number of times each unique element occurred. also takes bool ignore_case.&#10;- compare_filter() takes a list of tuples [platform,handle], and returns a dictionary with irrelevant handles filtered out. it uses comparison to the other handles to narrow each platform down to one handle. if it cannot narrow it down, the platform will be assigned a tuple of the possible handles." />
+    <option name="LAST_COMMIT_MESSAGE" value="created count_mentions() and compare_filter()&#10;- count_mentions() takes a list and returns a dictionary of the number of times each unique element occurred. also takes bool ignore_case.&#10;- compare_filter() takes a list of tuples [platform,handle], and returns a dictionary with irrelevant handles filtered out. it uses comparison to the other handles to narrow each platform down to one handle. if it cannot narrow it down, the platform will be assigned a tuple of the possible handles." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />

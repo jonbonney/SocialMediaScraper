@@ -16,20 +16,24 @@ def read_config():
 
 def is_social_account(url):
     # List of the major social media platforms
-    platforms = [r'youtube.com/(user|channel)/.',
-                 r'facebook.com/.',
-                 r'instagram.com/.',
-                 r'linkedin.com/company/.',
-                 r'tiktok.com/@.',
-                 r'pinterest.com/.']
+    platforms = [r'youtube.com/(user|channel)/[^/?]+',
+                 r'instagram.com/[^/?]+',
+                 r'linkedin.com/company/[^/?]+',
+                 r'tiktok.com/@[^/?]+',
+                 r'pinterest.com/[^/?]+']
     # Check if URL could be an account of a major social media platforms
     for p in platforms:
         if re.match(r'(https://)?(http://)?(www.)?' + p, url, re.IGNORECASE):
             return True
     # Check twitter separately because it requires additional conditionals
-    twitter = re.match('(https://)?(http://)?(www.)?twitter.com/.', url, re.IGNORECASE)
+    twitter = re.match(r'(https://)?(http://)?(www.)?twitter.com/.', url, re.IGNORECASE)
     tweet_or_hashtag = re.search(r'twitter.com/(i/|hashtag/)', url, re.IGNORECASE)
     if twitter and not tweet_or_hashtag:
+        return True
+    # Check facebook separately because it requires additional conditionals
+    facebook = re.match(r'(https://)?(http://)?(www.)?facebook.com/.', url, re.IGNORECASE)
+    hashtag = re.search(r'twitter.com/hashtag/', url, re.IGNORECASE)
+    if facebook and not hashtag:
         return True
     # If the URL has not met any of the conditions, it looks like it isn't a social account, so return False
     return False
@@ -66,11 +70,11 @@ def review_url(url_id, url, error='ErrorUnknown', traceback='No traceback'):
     file.close()
 
 
-async def get_page(session, url_id, url, timeout, headers):
+async def get_page(session, url_id, url, timeout):
     # Request HTML code from URL
     try:
         print(colored(('Staging request number ' + str(url_id) + ': '), color='yellow'), url)
-        async with session.get(url, headers=headers, timeout=timeout) as response:
+        async with session.get(url, timeout=timeout) as response:
 
             print('status of ' + str(url_id) + ': ' + str(response.status))
             page = await response.text()
@@ -276,7 +280,7 @@ async def main():
     async with aiohttp.ClientSession(headers=headers, connector=conn) as session:
         # Iterate through list of URLs, scraping the HTML code for each and parsing out social media links
         for i in range(len(urls)):
-            tasks.append(fetch_socials(session, i, urls[i], timeout=timeout, headers=headers))
+            tasks.append(fetch_socials(session, i, urls[i], timeout=timeout))
 
         # Asynchronously run all tasks
         await asyncio.gather(*tasks)
