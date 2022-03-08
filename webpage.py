@@ -27,13 +27,13 @@ def is_social_account(url):
             return True
     # Check twitter separately because it requires additional conditionals
     twitter = re.match(r'(https://)?(http://)?(www.)?twitter.com/.', url, re.IGNORECASE)
-    tweet_or_hashtag = re.search(r'twitter.com/(i/|hashtag/)', url, re.IGNORECASE)
-    if twitter and not tweet_or_hashtag:
+    tweet_hashtag_share = re.search(r'twitter.com/(i/|hashtag/|intent/|share?)', url, re.IGNORECASE)
+    if twitter and not tweet_hashtag_share:
         return True
     # Check facebook separately because it requires additional conditionals
     facebook = re.match(r'(https://)?(http://)?(www.)?facebook.com/.', url, re.IGNORECASE)
-    hashtag = re.search(r'twitter.com/hashtag/', url, re.IGNORECASE)
-    if facebook and not hashtag:
+    hashtag_or_share = re.search(r'twitter.com/(hashtag/|sharer/)', url, re.IGNORECASE)
+    if facebook and not hashtag_or_share:
         return True
     # If the URL has not met any of the conditions, it looks like it isn't a social account, so return False
     return False
@@ -45,7 +45,7 @@ def read_urls():
     data_path = config['data_path']
     url_col = config['url_col']
     # Read Web URL column of data set as list
-    raw_urls = pandas.read_excel(data_path)[url_col].head(1000).to_list()
+    raw_urls = pandas.read_excel(data_path)[url_col].to_list()
     # Remove all NaN (Not a Number) from list which arose from missing values in data set
     urls = [i for i in raw_urls if not pandas.isna(i)]
     print('Removed', len(raw_urls) - len(urls), 'empty URL elements from list.', sep=' ')
@@ -59,6 +59,10 @@ def read_urls():
     urls = list(set(urls))
     # Sort URls
     urls.sort(key=str.lower)
+    # Read the log file to get URLs that have already been collected
+    collected = pandas.read_csv('socials_log.csv')['url'].tolist()
+    # Remove already collected URLs from urls list
+    urls = [url for url in urls if url not in collected]
     return urls
 
 
@@ -118,9 +122,9 @@ async def get_page(session, url_id, url, timeout):
     return page
 
 
-async def fetch_socials(session, url_id, url, timeout, headers):
+async def fetch_socials(session, url_id, url, timeout):
     # Run get_page() to get the HTML page for the specified URL
-    page = await get_page(session, url_id, url, timeout=timeout, headers=headers)
+    page = await get_page(session, url_id, url, timeout=timeout)
     if not page:
         return  # if there was an error preventing the HTML code from being retrieved, skip to next URL
     print(colored(('Received HTML from number ' + str(url_id) + ': '), color='green'), url)
@@ -247,9 +251,12 @@ def compare_filter(handles):
 
 def log_socials(url, handle_dict):
     # Log socials to socials_log.csv
+    cols = ['url', 'twitter', 'youtube', 'facebook', 'instagram', 'tiktok', 'linkedin', 'pinterest']
+    df = pandas.DataFrame(columns=cols)
+    handle_dict['url'] = url
+    df.loc[len(df.index)] = handle_dict
     with open("socials_log.csv", "a+") as file:
-        for key in handle_dict:
-            file.write('\n' + url + ', ' + key + ': ' + str(handle_dict[key]))
+        df.to_csv(file, header=False, index=False)
     file.close()
 
 

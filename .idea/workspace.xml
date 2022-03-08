@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tiktok.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tiktok_synchronous.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/webpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tiktok.py" beforeDir="false" afterPath="$PROJECT_DIR$/tiktok.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/webpage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,18 +96,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.idea" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.tiktok">
+  <component name="RunManager" selected="Python.tiktok_synchronous">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,6 +172,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tiktok_synchronous" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tiktok_synchronous.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="webpage" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,6 +217,7 @@
     <list>
       <item itemvalue="Python.webpage" />
       <item itemvalue="Python.tiktok" />
+      <item itemvalue="Python.tiktok_synchronous" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.test" />
     </list>
@@ -249,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645567647370</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="created tiktok.py&#10;- includes functions to check if a tiktok account exists&#10;- renamed main.py to webpage.py">
+      <created>1645840622940</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1645840622940</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -286,7 +317,8 @@
     <MESSAGE value="created parse_social_handle() function&#10;- parse_social_handle() takes a social account url and returns a handle&#10;- reworked is_social_account() function after realizing it was too permissive&#10;- rearranged the order of a few functions" />
     <MESSAGE value="improved is_social_account and parse_social_handle" />
     <MESSAGE value="created count_mentions() and compare_filter()&#10;- count_mentions() takes a list and returns a dictionary of the number of times each unique element occurred. also takes bool ignore_case.&#10;- compare_filter() takes a list of tuples [platform,handle], and returns a dictionary with irrelevant handles filtered out. it uses comparison to the other handles to narrow each platform down to one handle. if it cannot narrow it down, the platform will be assigned a tuple of the possible handles." />
-    <option name="LAST_COMMIT_MESSAGE" value="created count_mentions() and compare_filter()&#10;- count_mentions() takes a list and returns a dictionary of the number of times each unique element occurred. also takes bool ignore_case.&#10;- compare_filter() takes a list of tuples [platform,handle], and returns a dictionary with irrelevant handles filtered out. it uses comparison to the other handles to narrow each platform down to one handle. if it cannot narrow it down, the platform will be assigned a tuple of the possible handles." />
+    <MESSAGE value="created tiktok.py&#10;- includes functions to check if a tiktok account exists&#10;- renamed main.py to webpage.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="created tiktok.py&#10;- includes functions to check if a tiktok account exists&#10;- renamed main.py to webpage.py" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />

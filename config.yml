@@ -11,8 +11,8 @@ url_col: Web URL
 # header = True if data file contains header (column names) (default: True)
 header: True
 # user_agent = the User Agent that you would like to access webpages via
-user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15
+user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.2 Safari/605.1.15
 # timeout = number of seconds to allow request to take before timing out (default: 10)
 timeout: 10
 # conn_limit = maximum number of simultaneous connections to allow (default: 100)
-conn_limit: 100
+conn_limit: 10
