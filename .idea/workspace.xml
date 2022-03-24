@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tiktok_synchronous.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chromedriver" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/review_tiktoks.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scroll_tiktok.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tiktok accounts.numbers" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tiktok accounts.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website+tiktokscan.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/~$socials2.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tiktok.py" beforeDir="false" afterPath="$PROJECT_DIR$/tiktok.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +72,9 @@
     <option name="height" value="900" />
   </component>
   <component name="ProjectId" id="25OTYmJYX1uK7c6N9dreGSK1xj2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -93,6 +100,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
@@ -106,7 +114,28 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.tiktok_synchronous">
+  <component name="RunManager" selected="Python.scroll_tiktok">
+    <configuration name="scroll_tiktok" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scroll_tiktok.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -216,6 +245,7 @@
       <item itemvalue="Python.webpage" />
       <item itemvalue="Python.tiktok" />
       <item itemvalue="Python.tiktok_synchronous" />
+      <item itemvalue="Python.scroll_tiktok" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.test" />
     </list>
@@ -285,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646702398556</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="created tiktok_synchronous.py&#10;- slow way of scraping TikTok to avoid being blocked&#10;- currently requests no more than one page per 3 seconds">
+      <created>1647534404775</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1647534404775</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -316,6 +353,7 @@
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fixed catastrophic async timeout error" />
     <MESSAGE value="fixed timeout bug" />
     <MESSAGE value="code cleanup" />
@@ -324,7 +362,8 @@
     <MESSAGE value="created count_mentions() and compare_filter()&#10;- count_mentions() takes a list and returns a dictionary of the number of times each unique element occurred. also takes bool ignore_case.&#10;- compare_filter() takes a list of tuples [platform,handle], and returns a dictionary with irrelevant handles filtered out. it uses comparison to the other handles to narrow each platform down to one handle. if it cannot narrow it down, the platform will be assigned a tuple of the possible handles." />
     <MESSAGE value="created tiktok.py&#10;- includes functions to check if a tiktok account exists&#10;- renamed main.py to webpage.py" />
     <MESSAGE value="improved is_social_account to remove sharing links" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved is_social_account to remove sharing links" />
+    <MESSAGE value="created tiktok_synchronous.py&#10;- slow way of scraping TikTok to avoid being blocked&#10;- currently requests no more than one page per 3 seconds" />
+    <option name="LAST_COMMIT_MESSAGE" value="created tiktok_synchronous.py&#10;- slow way of scraping TikTok to avoid being blocked&#10;- currently requests no more than one page per 3 seconds" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />
