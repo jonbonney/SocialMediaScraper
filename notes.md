@@ -35,4 +35,9 @@ TikTok account collection notes:
   -	mini
   -	pizzahut
   -	porsche
+  -	samsungmobile
+  -	samsung
+  -	xbox
+  -	yahoo
+  -	zara
 
