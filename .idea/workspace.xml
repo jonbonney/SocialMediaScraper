@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/chromedriver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/review_tiktoks.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scroll_tiktok.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tiktok accounts.numbers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tiktok accounts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website+tiktokscan.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/~$socials2.xlsx" afterDir="false" />
+    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block">
+      <change afterPath="$PROJECT_DIR$/indeed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/indeed_credentials.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/indeed_log.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/review_tiktoks2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tiktok4:13:2022.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/review_tiktoks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/review_tiktoks.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tiktok_synchronous.py" beforeDir="false" afterPath="$PROJECT_DIR$/tiktok_synchronous.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +114,28 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.scroll_tiktok">
+  <component name="RunManager" selected="Python.indeed">
+    <configuration name="indeed" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/indeed.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="scroll_tiktok" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -245,6 +266,7 @@
       <item itemvalue="Python.webpage" />
       <item itemvalue="Python.tiktok" />
       <item itemvalue="Python.tiktok_synchronous" />
+      <item itemvalue="Python.indeed" />
       <item itemvalue="Python.scroll_tiktok" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.test" />
@@ -322,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647534404775</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block">
+      <created>1648148802305</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648148802305</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -363,7 +392,8 @@
     <MESSAGE value="created tiktok.py&#10;- includes functions to check if a tiktok account exists&#10;- renamed main.py to webpage.py" />
     <MESSAGE value="improved is_social_account to remove sharing links" />
     <MESSAGE value="created tiktok_synchronous.py&#10;- slow way of scraping TikTok to avoid being blocked&#10;- currently requests no more than one page per 3 seconds" />
-    <option name="LAST_COMMIT_MESSAGE" value="created tiktok_synchronous.py&#10;- slow way of scraping TikTok to avoid being blocked&#10;- currently requests no more than one page per 3 seconds" />
+    <MESSAGE value="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block" />
+    <option name="LAST_COMMIT_MESSAGE" value="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />
