@@ -10,7 +10,10 @@ def google_search(search_term, api_key, cse_id, **kwargs):
     # this method makes the request to the Google Search API
     service = build("customsearch", "v1", developerKey=api_key)
     res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
-    return res['items']
+    if "items" in res.keys():
+        return res["items"]
+    else:
+        return None
 
 
 def main():
@@ -29,6 +32,15 @@ def main():
         search_term = company_name + ' reviews site:indeed.com/cmp/'
         # calls the google search method and limits to only the first 5 search results
         results = google_search(search_term, my_api_key, my_cse_id, num=5)
+        # check for None results. if none, log the lack of results, then skip to next row
+        if not results:
+            with open("indeed_log.csv", "a+") as file:
+                # format results for the .csv file and then append the row
+                cols = [str(company_id), company_name, '0', '', '']
+                row = ','.join(cols) + '\n'
+                file.write(row)
+            file.close()
+            continue
         # begin a count of which result we are on for the current search request
         result_num = 0
 
@@ -36,6 +48,7 @@ def main():
         for result in results:
             result_num += 1
             with open("indeed_log.csv", "a+") as file:
+                # format results for the .csv file and then append the row
                 cols = [str(company_id), company_name, str(result_num), result['title'], result['link']]
                 row = ','.join(cols) + '\n'
                 file.write(row)
