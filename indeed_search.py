@@ -17,7 +17,7 @@ def google_search(search_term, api_key, cse_id, **kwargs):
 
 
 def main():
-    csv_path = 'tiktok4:7:2022.csv'
+    csv_path = 'data/tiktok4:7:2022.csv'
     # Reads the csv file containing company names
     # Only reads the company key and company name columns
     dataframe = pandas.read_csv(csv_path, usecols=[0, 2])

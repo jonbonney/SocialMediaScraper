@@ -5,15 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block">
-      <change afterPath="$PROJECT_DIR$/.idea/twitter_date.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/tiktok4:13:2022.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/indeed_credentials.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/indeed_scrape.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/review_tiktoks2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tiktok4:13:2022.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/twitter_date.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/indeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/indeed_log.csv" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_log.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/review_tiktoks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/review_tiktoks.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tiktok accounts.numbers" beforeDir="false" afterPath="$PROJECT_DIR$/data/tiktok accounts.numbers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tiktok accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/tiktok accounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tiktok.py" beforeDir="false" afterPath="$PROJECT_DIR$/tiktok.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tiktok_synchronous.py" beforeDir="false" afterPath="$PROJECT_DIR$/tiktok_synchronous.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpage.py" beforeDir="false" afterPath="$PROJECT_DIR$/webpage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website+tiktokscan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/website+tiktokscan.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/~$socials2.xlsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,11 +119,12 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.indeed">
-    <configuration name="indeed" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager" selected="Python.indeed_scrape">
+    <configuration name="indeed_scrape" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -129,7 +136,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/indeed.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/indeed_scrape.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="indeed_search" type="PythonConfigurationType" factoryName="Python">
+      <module name="SocialMediaScraper" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.10/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/indeed_search.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -268,7 +296,8 @@
       <item itemvalue="Python.webpage" />
       <item itemvalue="Python.tiktok" />
       <item itemvalue="Python.tiktok_synchronous" />
-      <item itemvalue="Python.indeed" />
+      <item itemvalue="Python.indeed_search" />
+      <item itemvalue="Python.indeed_scrape" />
       <item itemvalue="Python.scroll_tiktok" />
       <item itemvalue="Python.test2" />
       <item itemvalue="Python.test" />
@@ -360,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650469321837</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated indeed.py&#10;- added functionality for detecting a lack of search results and dealing with it apropriately">
+      <created>1651041727715</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1651041727715</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -403,7 +439,8 @@
     <MESSAGE value="created tiktok_synchronous.py&#10;- slow way of scraping TikTok to avoid being blocked&#10;- currently requests no more than one page per 3 seconds" />
     <MESSAGE value="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block" />
     <MESSAGE value="created indeed.py&#10;- uses the Google search engine to find relevant indeed pages for a given company" />
-    <option name="LAST_COMMIT_MESSAGE" value="created indeed.py&#10;- uses the Google search engine to find relevant indeed pages for a given company" />
+    <MESSAGE value="updated indeed.py&#10;- added functionality for detecting a lack of search results and dealing with it apropriately" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated indeed.py&#10;- added functionality for detecting a lack of search results and dealing with it apropriately" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />
