@@ -3,6 +3,7 @@ from webpage import read_config
 import time
 import re
 import math
+import pandas
 
 
 def is_claimed(html):
@@ -33,7 +34,7 @@ def reformat(url):
     p = r'indeed\.com/cmp/(?P<company>[^/]+)/reviews'
     company = re.search(p, url, re.IGNORECASE).group('company')
     url = 'https://www.indeed.com/cmp/' + company + '/reviews/?fcountry=ALL&sort=date_asc'
-    return url
+    return url, company
 
 
 def first_review_date(html):
@@ -65,25 +66,41 @@ def main():
 
     headers = {'User-Agent': user_agent}
 
-    # Import indeed URLs to webscrape
-    # TO-DO
+    # Import indeed URL data to webscrape
+    csv_path = 'indeed_log.csv'
+    dataframe = pandas.read_csv(csv_path)
     urls = ['https://www.indeed.com/cmp/Bnsf-Railway/reviews',
             'https://www.indeed.com/cmp/Bank-of-America/reviews',
             'https://www.indeed.com/cmp/Popular,-Inc./reviews?fcountry=ALL&ftopic=mgmt&start=80',
             'https://www.indeed.com/cmp/Aramark/reviews',
             'https://www.indeed.com/cmp/Amgen/reviews?fcountry=US&floc=Fort+Lauderdale%2C+FL']
+    scraped = []
 
-    for url in urls:
+    for index, row in dataframe.iterrows():
+        company_id = row[0]
+        company_name = row[1]
+        result_number = row[2]
+        print(company_id, company_name, result_number, sep=' | ')
+        url = row[4]
         print(url)
+
         # Confirm URL is for an indeed review page
         if not is_reviews(url):
             continue
-        # Reformat the URL to include search query fcountry=ALL and sort=date_asc
-        url = reformat(url)
+        # Reformat the URL to include search query fcountry=ALL and sort=date_asc and extract indeed_id from URL
+        url, indeed_id = reformat(url)
         print(url)
+        # If, after reformatting, it is the same URL as one already scraped, we will skip this row
+        if url in scraped:
+            print('URL already scraped. Skipping row...')
+            continue
+
         # # # Request webpage # # #
         time.sleep(1)  # pause before each page request to ensure we don't overload indeed servers
         page = requests.get(url, headers=headers)
+
+        # Append the URL to the list of URLs that have been webscraped
+        scraped.append(url)
 
         # # # Parse webpage # # #
         # check if profile is claimed by the company
@@ -93,7 +110,16 @@ def main():
         date = first_review_date(page.text)
 
         # # # Log data # # #
-        # TO-DO
+        with open("indeed_data.csv", "a+") as file:
+            # format results for the .csv file and then append the row
+            cols = [str(company_id),
+                    '"'+company_name+'"',
+                    '"'+indeed_id+'"',
+                    str(claimed),
+                    '"'+date+'"']
+            row = ','.join(cols) + '\n'
+            file.write(row)
+        file.close()
 
         # Display time elapsed
         time_elapsed = round(time.perf_counter() - time_start)
