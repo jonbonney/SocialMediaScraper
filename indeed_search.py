@@ -49,7 +49,8 @@ def main():
             result_num += 1
             with open("indeed_log.csv", "a+") as file:
                 # format results for the .csv file and then append the row
-                cols = [str(company_id), company_name, str(result_num), result['title'], result['link']]
+                # links must be surrounded by double quotes because they sometimes contain commas
+                cols = [str(company_id), company_name, str(result_num), result['title'], '"' + result['link'] + '"']
                 row = ','.join(cols) + '\n'
                 file.write(row)
             file.close()
