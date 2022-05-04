@@ -34,7 +34,7 @@ def main():
         results = google_search(search_term, my_api_key, my_cse_id, num=5)
         # check for None results. if none, log the lack of results, then skip to next row
         if not results:
-            with open("indeed_log.csv", "a+") as file:
+            with open("indeed_log_old.csv", "a+") as file:
                 # format results for the .csv file and then append the row
                 cols = [str(company_id), company_name, '0', '', '']
                 row = ','.join(cols) + '\n'
@@ -47,10 +47,14 @@ def main():
         # log search results
         for result in results:
             result_num += 1
-            with open("indeed_log.csv", "a+") as file:
+            with open("indeed_log_old.csv", "a+") as file:
                 # format results for the .csv file and then append the row
-                # links must be surrounded by double quotes because they sometimes contain commas
-                cols = [str(company_id), company_name, str(result_num), result['title'], '"' + result['link'] + '"']
+                # company_name, title, and link must be surrounded by double quotes because they may contain commas
+                cols = [str(company_id),
+                        '"'+company_name+'"',
+                        str(result_num),
+                        '"'+result['title']+'"',
+                        '"'+result['link']+'"']
                 row = ','.join(cols) + '\n'
                 file.write(row)
             file.close()
