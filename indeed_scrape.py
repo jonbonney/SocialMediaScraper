@@ -2,6 +2,7 @@ import requests
 from webpage import read_config
 import time
 import re
+import math
 
 
 def is_claimed(html):
@@ -12,7 +13,6 @@ def is_claimed(html):
     if claim_widget_css not in html:
         # If this error is raised, it is likely that indeed has changed their css or the URL is not correct
         raise Exception('Claim error. "claimed-profile-section-widget" css not found in page.')
-    print('claimed-profile-section-widget css found.')
 
     # Check if the 'Claimed Profile' css is present in the page
     if claimed_css in html:
@@ -25,9 +25,7 @@ def is_claimed(html):
 def is_reviews(url):
     p = r'indeed\.com/cmp/[^/]+/reviews'
     if re.search(p, url, re.IGNORECASE):
-        print('is review')
         return True
-    print('is NOT review.')
     return False
 
 
@@ -39,8 +37,15 @@ def reformat(url):
 
 
 def first_review_date(html):
+    # first need to check if there is a featured review and remove it, since it will not be relevant
+    p = r'cmp-FeaturedReviewHeader-highlighted'
+    if re.search(p, html, re.IGNORECASE):
+        print('featured review present. splitting...')
+        html = html.split(p)[1]
+    # look for first (relevant) review
     p = r'(?P<review><span itemProp=\"author\".+?</span>)'
     first_review = re.search(p, html, re.DOTALL).group('review')
+    # extract date of the review
     p = r'.*>(?P<date>[^"]*)<'
     date = re.search(p, first_review, re.DOTALL).group('date')
     print(date)
@@ -61,9 +66,12 @@ def main():
     headers = {'User-Agent': user_agent}
 
     # Import indeed URLs to webscrape
+    # TO-DO
     urls = ['https://www.indeed.com/cmp/Bnsf-Railway/reviews',
             'https://www.indeed.com/cmp/Bank-of-America/reviews',
-            'https://www.indeed.com/cmp/Popular,-Inc./reviews?fcountry=ALL&ftopic=mgmt&start=80']
+            'https://www.indeed.com/cmp/Popular,-Inc./reviews?fcountry=ALL&ftopic=mgmt&start=80',
+            'https://www.indeed.com/cmp/Aramark/reviews',
+            'https://www.indeed.com/cmp/Amgen/reviews?fcountry=US&floc=Fort+Lauderdale%2C+FL']
 
     for url in urls:
         print(url)
@@ -85,8 +93,14 @@ def main():
         date = first_review_date(page.text)
 
         # # # Log data # # #
+        # TO-DO
 
-        print('\n\n')
+        # Display time elapsed
+        time_elapsed = round(time.perf_counter() - time_start)
+        print('Time Elapsed: ' + str(math.floor(time_elapsed/60)) + ':' + str(time_elapsed % 60).zfill(2))
+
+        print('')
+
 
 if __name__ == '__main__':
     main()

@@ -13,7 +13,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/indeed_log.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/indeed_scrape.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_scrape.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/indeed_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/review_tiktoks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/review_tiktoks.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tiktok accounts.numbers" beforeDir="false" afterPath="$PROJECT_DIR$/data/tiktok accounts.numbers" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tiktok accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/tiktok accounts.txt" afterDir="false" />
@@ -124,7 +123,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.indeed_search">
+  <component name="RunManager" selected="Python.indeed_scrape">
     <configuration name="indeed_scrape" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -418,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651638205103</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="updated indeed_scrape.py&#10;- added functionality to reformat URLs to the correct query including fcountry=ALL and sort=date_asc&#10;- added functionality to extract date of first review given the html for a reviews page that is set to sort=date_asc&#10;corrected typo in the log file name for indeed_search.py">
+      <created>1651638581529</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1651638581529</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -465,7 +471,8 @@
     <MESSAGE value="created indeed_scrape.py&#10;- webscrapes an indeed company page&#10;- identifies whether the page is claimed or not&#10;renamed/refactored indeed.py to indeed_search.py" />
     <MESSAGE value="updated indeed_search.py&#10;- saved links are now surrounded by double quotes since they sometimes contain one or more commas. this would otherwise break the formatting of the csv log." />
     <MESSAGE value="updated indeed_search.py&#10;- surrounded company name and result titles with double quotations to avoid any issues when they contain commas&#10;- links were already surrounded by commas" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated indeed_search.py&#10;- surrounded company name and result titles with double quotations to avoid any issues when they contain commas&#10;- links were already surrounded by commas" />
+    <MESSAGE value="updated indeed_scrape.py&#10;- added functionality to reformat URLs to the correct query including fcountry=ALL and sort=date_asc&#10;- added functionality to extract date of first review given the html for a reviews page that is set to sort=date_asc&#10;corrected typo in the log file name for indeed_search.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated indeed_scrape.py&#10;- added functionality to reformat URLs to the correct query including fcountry=ALL and sort=date_asc&#10;- added functionality to extract date of first review given the html for a reviews page that is set to sort=date_asc&#10;corrected typo in the log file name for indeed_search.py" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />
