@@ -47,7 +47,7 @@ def main():
         # log search results
         for result in results:
             result_num += 1
-            with open("indeed_log_old.csv", "a+") as file:
+            with open("indeed_log.csv", "a+") as file:
                 # format results for the .csv file and then append the row
                 # company_name, title, and link must be surrounded by double quotes because they may contain commas
                 cols = [str(company_id),

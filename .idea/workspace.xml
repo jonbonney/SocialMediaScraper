@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block">
+    <list default="true" id="bb5297c0-00bb-4418-b67e-45aa30f6ce66" name="Default Changelist" comment="created indeed_scrape.py&#10;- webscrapes an indeed company page&#10;- identifies whether the page is claimed or not&#10;renamed/refactored indeed.py to indeed_search.py">
       <change afterPath="$PROJECT_DIR$/data/tiktok4:13:2022.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/indeed_credentials.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/indeed_scrape.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/indeed_log_old.csv" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/review_tiktoks2.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/twitter_date.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/indeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/indeed_log.csv" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_log.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indeed_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/indeed_scrape.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_scrape.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/indeed_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/indeed_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/review_tiktoks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/review_tiktoks.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tiktok accounts.numbers" beforeDir="false" afterPath="$PROJECT_DIR$/data/tiktok accounts.numbers" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tiktok accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/tiktok accounts.txt" afterDir="false" />
@@ -123,7 +124,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.indeed_scrape">
+  <component name="RunManager" selected="Python.indeed_search">
     <configuration name="indeed_scrape" type="PythonConfigurationType" factoryName="Python">
       <module name="SocialMediaScraper" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -396,7 +397,28 @@
       <option name="project" value="LOCAL" />
       <updated>1651041727715</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="created indeed_scrape.py&#10;- webscrapes an indeed company page&#10;- identifies whether the page is claimed or not&#10;renamed/refactored indeed.py to indeed_search.py">
+      <created>1651548256008</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1651548256008</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated indeed_search.py&#10;- saved links are now surrounded by double quotes since they sometimes contain one or more commas. this would otherwise break the formatting of the csv log.">
+      <created>1651634950735</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651634950735</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated indeed_search.py&#10;- surrounded company name and result titles with double quotations to avoid any issues when they contain commas&#10;- links were already surrounded by commas">
+      <created>1651638205103</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1651638205103</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -440,7 +462,10 @@
     <MESSAGE value="created scroll_tiktok.py&#10;- used undetected_chromedriver to help avoid immediate block" />
     <MESSAGE value="created indeed.py&#10;- uses the Google search engine to find relevant indeed pages for a given company" />
     <MESSAGE value="updated indeed.py&#10;- added functionality for detecting a lack of search results and dealing with it apropriately" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated indeed.py&#10;- added functionality for detecting a lack of search results and dealing with it apropriately" />
+    <MESSAGE value="created indeed_scrape.py&#10;- webscrapes an indeed company page&#10;- identifies whether the page is claimed or not&#10;renamed/refactored indeed.py to indeed_search.py" />
+    <MESSAGE value="updated indeed_search.py&#10;- saved links are now surrounded by double quotes since they sometimes contain one or more commas. this would otherwise break the formatting of the csv log." />
+    <MESSAGE value="updated indeed_search.py&#10;- surrounded company name and result titles with double quotations to avoid any issues when they contain commas&#10;- links were already surrounded by commas" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated indeed_search.py&#10;- surrounded company name and result titles with double quotations to avoid any issues when they contain commas&#10;- links were already surrounded by commas" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/review_url.csv" />

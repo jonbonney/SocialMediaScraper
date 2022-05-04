@@ -1,6 +1,7 @@
 import requests
 from webpage import read_config
 import time
+import re
 
 
 def is_claimed(html):
@@ -21,6 +22,31 @@ def is_claimed(html):
     return False
 
 
+def is_reviews(url):
+    p = r'indeed\.com/cmp/[^/]+/reviews'
+    if re.search(p, url, re.IGNORECASE):
+        print('is review')
+        return True
+    print('is NOT review.')
+    return False
+
+
+def reformat(url):
+    p = r'indeed\.com/cmp/(?P<company>[^/]+)/reviews'
+    company = re.search(p, url, re.IGNORECASE).group('company')
+    url = 'https://www.indeed.com/cmp/' + company + '/reviews/?fcountry=ALL&sort=date_asc'
+    return url
+
+
+def first_review_date(html):
+    p = r'(?P<review><span itemProp=\"author\".+?</span>)'
+    first_review = re.search(p, html, re.DOTALL).group('review')
+    p = r'.*>(?P<date>[^"]*)<'
+    date = re.search(p, first_review, re.DOTALL).group('date')
+    print(date)
+    return date
+
+
 def main():
     # Start timer to track how long the program has been running
     time_start = time.perf_counter()
@@ -35,17 +61,32 @@ def main():
     headers = {'User-Agent': user_agent}
 
     # Import indeed URLs to webscrape
-    url = 'https://www.indeed.com/cmp/Bnsf-Railway/reviews'
+    urls = ['https://www.indeed.com/cmp/Bnsf-Railway/reviews',
+            'https://www.indeed.com/cmp/Bank-of-America/reviews',
+            'https://www.indeed.com/cmp/Popular,-Inc./reviews?fcountry=ALL&ftopic=mgmt&start=80']
 
-    # # # Request webpage # # #
-    page = requests.get(url, headers=headers)
-    print(url)
+    for url in urls:
+        print(url)
+        # Confirm URL is for an indeed review page
+        if not is_reviews(url):
+            continue
+        # Reformat the URL to include search query fcountry=ALL and sort=date_asc
+        url = reformat(url)
+        print(url)
+        # # # Request webpage # # #
+        time.sleep(1)  # pause before each page request to ensure we don't overload indeed servers
+        page = requests.get(url, headers=headers)
 
-    # # # Parse webpage # # #
-    claimed = is_claimed(page.text)
+        # # # Parse webpage # # #
+        # check if profile is claimed by the company
+        claimed = is_claimed(page.text)
 
-    # # # Log data # # #
+        # check date of first review
+        date = first_review_date(page.text)
 
+        # # # Log data # # #
+
+        print('\n\n')
 
 if __name__ == '__main__':
     main()
