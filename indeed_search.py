@@ -65,6 +65,10 @@ def main():
             results = google_search(search_term, my_api_key, my_cse_id, num=5)
         except googleapiclient.errors.HttpError as e:
             print(e)
+            # First check if it is HttpError 429 which indicates that we have used up our available api quota
+            if '<HttpError 429 when requesting' in e:
+                raise Exception(e)
+            # Otherwise, print the error and move onto a different url
             with open("indeed_errorlog.csv", "a+") as file:
                 # append company to error log
                 file.write('{},{},HttpError\n'.format(company_name, company_id))
@@ -75,7 +79,7 @@ def main():
             print('no results for ' + company_name)
             with open("indeed_log.csv", "a+") as file:
                 # format results for the .csv file and then append the row
-                cols = [str(company_id), company_name, '0', '', '']
+                cols = [str(company_id), company_name, '0', '']
                 row = ','.join(cols) + '\n'
                 file.write(row)
             file.close()
