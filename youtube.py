@@ -28,48 +28,42 @@ def main():
     # Import youtube channels and users
     excel_path = 'data/socials2.xlsx'
     print('Importing data...')
-    handles = pandas.read_excel(excel_path, usecols=['YouTube Channel'])['YouTube Channel'].tolist()
+    channel_ids = pandas.read_excel(excel_path, usecols=['YouTube ID'])['YouTube ID'].tolist()
 
     # Check if any handles have been scraped
-    if exists('data/youtube_data.csv'):
+    if exists('data/youtube_id_data.csv'):
         # If they have, make a list of the handles that have been scraped so far
-        scraped = pandas.read_csv('data/youtube_data.csv')['handle'].tolist()
+        scraped = pandas.read_csv('data/youtube_id_data.csv')['channel_id'].tolist()
     else:
         # If not, create the csv file with the appropriate header
-        with open("data/youtube_data.csv", "a+") as file:
+        with open("data/youtube_id_data.csv", "a+") as file:
             # Create the header row for the .csv file
-            header = 'handle,account_type,join_date\n'
+            header = 'channel_id,join_date\n'
             file.write(header)
         file.close()
         scraped = []
 
-    for handle in handles:
+    for channel in channel_ids:
         # Check to see if this is a missing value in the data source. skip if it is.
-        if pandas.isna(handle):
+        if pandas.isna(channel):
             continue
         # Check to see if the value has a space, which will make it unusable in a url
-        if ' ' in handle:
+        if ' ' in channel:
             continue
         # Check to see if the handle has already been scraped
-        if handle in scraped:
+        if channel in scraped:
             continue
 
         # After passing these initial checks, we're ready to start working with the handle
-        print(handle, end=': ')
-        scraped.append(handle)
+        print(channel, end=': ')
+        scraped.append(channel)
 
-        # Since we do know whether each piece of data represents a "channel" or a "user" we may need to try both
-        url = 'https://www.youtube.com/user/{}/about'.format(handle)
-        account_type = 'user'
+        # Since we are using the Channel ID instead of its handle, we use /channel/ instead of /user/ or /c/
+        url = 'https://www.youtube.com/channel/{}/about'.format(channel)
         # Request the about page for the given user
         page = requests.get(url, headers=headers)
-        # If the user page doesn't exist, try requesting the channel url instead
-        if page.status_code == 404:
-            url = 'https://www.youtube.com/c/{}/about'.format(handle)
-            account_type = 'c'
-            page = requests.get(url, headers=headers)
 
-        # If we now have an existing account, parse the page
+        # If we have an existing account, parse the page
         if page.status_code == 200:
             try:
                 join_date = parse(page.text)
@@ -77,23 +71,28 @@ def main():
                 print('parse error.')
                 with open("data/youtube_errorlog.csv", "a+") as file:
                     # append handle to 404 log
-                    file.write(handle + ',parse error\n')
+                    file.write(channel + ',parse error\n')
                 file.close()
                 continue
+
+        # If there is status code 429, that indicates that Google has detected the bot, so we need to stop
+        elif page.status_code == 429:
+            raise Exception('Google detected unusual activity')
+
         # Else if we still don't have an existing account, print and move on
         elif page.status_code == 404:
             print('not found.')
             with open("data/youtube_404log.csv", "a+") as file:
                 # append handle to 404 log
-                file.write(handle + '\n')
+                file.write(channel + '\n')
             file.close()
             continue
-        # If there's some non-200 html code, log the handle and move on
+        # If there's some other non-200 html code, log the handle and move on
         else:
             print('error in request')
             with open("data/youtube_errorlog.csv", "a+") as file:
                 # append handle to 404 log
-                file.write('{}, html status {}\n'.format(handle, page.status_code))
+                file.write('{}, html status {}\n'.format(channel, page.status_code))
             file.close()
             continue
 
@@ -101,17 +100,16 @@ def main():
         print(join_date)
 
         # Log data
-        with open("data/youtube_data.csv", "a+") as file:
+        with open("data/youtube_id_data.csv", "a+") as file:
             # format results for the .csv file and then append the row
-            cols = ['"'+handle+'"',
-                    account_type,
+            cols = ['"'+channel+'"',
                     '"'+join_date+'"']
             row = ','.join(cols) + '\n'
             file.write(row)
         file.close()
 
         # Wait briefly to avoid overloading the server and getting blocked
-        time.sleep(0.15)
+        time.sleep(0.2)
 
 
 if __name__ == '__main__':
